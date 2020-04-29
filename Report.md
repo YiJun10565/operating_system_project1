@@ -17,17 +17,29 @@ main process及之後fork的child們使用兩個不同的prioirty，只有當下
 環境:linux ubuntu 16.04 LTS
 Kernel:linux-4.14.25
 ## 比較
-使用程式計算每個process用了幾個unit of time
-1. 首先看到TIME_MEASUREMENT，每支process的範圍大概落在[500-40, 500+40]之間，也就是誤差在8%左右
-![](https://i.imgur.com/OPRn4or.png)
+
+使用程式計算每個process用了幾個unit_of_time
+
+1. 首先看到TIME_MEASUREMENT，每支process的範圍大概落在\[500-40, 500+40\]之間，也就是誤差在8%左右
+
+- ![](https://i.imgur.com/OPRn4or.png)
+
 2. FIFO_1的部分，誤差在+10%內
-![](https://i.imgur.com/d3S5HDQ.png)
+
+- ![](https://i.imgur.com/d3S5HDQ.png)
+
 3. PSJF_2的部分，因為有preempt，因此P1的總執行時間為4000，P2為1000，P3為7000，P4為2000，P5為1000，可看到誤差皆在5%內
-![](https://i.imgur.com/Ts6uYBT.png)
+
+- ![](https://i.imgur.com/Ts6uYBT.png)
+
 4. RR_3的部分，因為他們會一直切換，因此總執行時間比他們原定的執行時間增加了很多。理論值則應該各為:P1:18500，P2:17500，P3:14000，P4:25000，P5:23500，P6:20000，可以看到誤差都在5%內
-![](https://i.imgur.com/BIBj3OC.png)
+
+- ![](https://i.imgur.com/BIBj3OC.png)
+
 5. SJF_4的部分，因為沒有Preempt，因此誤差與要求的時間只在5%內
-![](https://i.imgur.com/jpFmw8Z.png)
+
+- ![](https://i.imgur.com/jpFmw8Z.png)
+
 因此大概可以推論我的這份scheduler的誤差約會在5%內
 
 ## 討論
