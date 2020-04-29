@@ -1,6 +1,6 @@
 #include"task.h"
 
-int task_cmp_FIFO(const void *pa, const void *pb){
+int task_cmp(const void *pa, const void *pb){
 	struct Task *a = (struct Task*)pa;
 	struct Task *b = (struct Task*)pb;
 	if(a->ready_time < b->ready_time)
@@ -8,18 +8,6 @@ int task_cmp_FIFO(const void *pa, const void *pb){
 	else if(a->ready_time > b->ready_time)
 		return 1;
 	if( a->id < b->id)
-		return -1;
-	else 
-		return 1;
-}
-int task_cmp_SJF(const void *pa, const void *pb){
-	struct Task *a = (struct Task*)pa;
-	struct Task *b = (struct Task*)pb;
-	if(a->ready_time < b->ready_time)
-		return -1;
-	else if(a->ready_time > b->ready_time)
-		return 1;
-	if( a->exec_time < b->exec_time)
 		return -1;
 	else 
 		return 1;

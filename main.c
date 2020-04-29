@@ -53,11 +53,8 @@ int main(){
 	Init_CPU_and_Param_and_args(N);
 	Scan_task(N);
 
-	if( !strcmp(S, "FIFO") || !strcmp(S, "RR") )
-		qsort(tasks, N, sizeof(struct Task), task_cmp_FIFO);
-	else 
-		qsort(tasks, N, sizeof(struct Task), task_cmp_SJF);
-
+	qsort(tasks, N, sizeof(struct Task), task_cmp);
+	
 	//for(int i = 0; i < N; i++)
 	//	print_task(tasks[i]);
 	
